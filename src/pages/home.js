@@ -1,10 +1,11 @@
 import React from 'react';
-import StudentsList from '../components/StudentsList';
 
 const Home = () => {
+    console.log('--------')
     return (
         <div>
-            <StudentsList/>
+            <h1>Home</h1>
+            
         </div>
     );
 };

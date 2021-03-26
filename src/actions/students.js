@@ -1,4 +1,5 @@
 import axios from 'axios'
+import firebaseDb from '../firebase'
 export const DISPLAY_STUDENTS = 'DISPLAY_STUDENTS'
 
 export const displayStudents = student =>( 
@@ -9,15 +10,12 @@ export const displayStudents = student =>(
 
 export const getStudents = () => dispatch =>
 {
-    axios(
+    firebaseDb.child('etudiants').on('value', snapshot=>
+    {
+        if (snapshot.val() != null)
         {
-            method: 'get',
-            url: 'https://apireacttest.herokuapp.com/etudiants'
+            dispatch(displayStudents(snapshot.val()))
+            
         }
-    ).then(res =>
-        {
-            dispatch(displayStudents(res.data))
-        })
-        .catch(err => err)
-    
+    })
 }

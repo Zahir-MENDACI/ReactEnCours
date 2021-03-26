@@ -6,14 +6,15 @@ import {Provider} from 'react-redux'
 import {store} from './config/store'
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
+import Routes from './config/router'
 
 
 function App() {
   return (
       <Provider store={store}>
-        <div className="App">
-          <Home/>
-        </div>
+        <Routes>
+
+        </Routes>
       </Provider>
     );
     
