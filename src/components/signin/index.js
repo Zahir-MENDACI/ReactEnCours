@@ -1,40 +1,25 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import{useHistory, userHistory} from 'react-router-dom'
-const Signin  = props => {
-    
-    const[username, setUsername] = useState('')
-    const[ password, setPassword] = useState('')
-    const history = useHistory()
-    console.log('history',history)
-const submit = e =>{
-    e.preventDefault()
-    console.log(username)
-    console.log(password)
-}
-axios({
-    method: 'POST',
-    url:'https://easy-login-api.herokuapp.com/users/login',
-    data: {
-        username:username,
-        password:password
-    }
-})   
-    .then(res =>{
-        console.log(res.headers['x-access-token'])
-        localStorage.setItem('token',res.headers['x-access-token'])
-        history.push('/home/20')
-    })
-    .catch(err =>{
-        console.log(err)
-    })
 
+import{useHistory} from 'react-router-dom'
+const Signin  = ({submit}) => {
+    
+    const [formState, setFormState] = useState({username:'',password: ''})
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const history = useHistory() 
+    
+    
+    
     return (
-        <StyledForm onSubmit={submit}>
+        <StyledForm onSubmit={e => submit(e, formState, setErrorMessage, history)}>
             <StyledSpan>Signin</StyledSpan>
-            <SigninInput placeholder="username" onChange={e => setUsername(e.target.value)}type ='text'></SigninInput>
-            <SigninInput placeholder="password" onChange={e => setPassword(e.target.value)} type ='password'></SigninInput>
+            <SigninInput 
+            placeholder="username" 
+            onChange={e => setFormState({...formState,username: e.target.value})}type ='text'></SigninInput>
+            <SigninInput placeholder="password" 
+            onChange={e => setFormState({...formState,password: e.target.value})} type ='password'></SigninInput>
+            <StyledSpan>{errorMessage}</StyledSpan>
             <SigninInput type='Submit'></SigninInput>
             
         </StyledForm>
@@ -44,7 +29,7 @@ axios({
 }
 const StyledSpan = styled.span`
 color: green;
-margin-botton: 12px;
+margin-button: 12px;
 `
 
 const StyledForm = styled.form`
