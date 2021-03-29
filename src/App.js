@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './pages/home';
@@ -7,15 +7,25 @@ import {store} from './config/store'
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
 import Routes from './config/router'
+import './config/translations'
+import {useTranslation} from 'react-i18next'
+import { ThemeProvider } from "styled-components";
+import Splash from './components/Splash';
 
 
 function App() {
-  return (
-      <Provider store={store}>
-        <Routes>
+  const {t, i18n} = useTranslation()
 
-        </Routes>
-      </Provider>
+  const [theme, setTheme] = useState("light")
+  
+  return (
+        <Provider store={store}>
+          <button onClick={() => i18n.changeLanguage('fr')}>Fr</button>
+          <button onClick={() => i18n.changeLanguage('en')}>En</button>
+          <Routes>
+
+          </Routes>
+        </Provider>
     );
     
 //   init("user_s8PpYDAqUM3HKVcCGPmLc");
@@ -42,6 +52,23 @@ function App() {
 //       <input type="submit" value="Send" />
 //     </form>
 //   );
+}
+
+const LightTheme = {
+  pageBackground: "white",
+  titleColor: "#dc658b",
+  tagLineColor: "black"
+};
+
+const DarkTheme = {
+  pageBackground: "#282c36",
+  titleColor: "lightpink",
+  tagLineColor: "lavender"
+}
+
+const themes = {
+  light: LightTheme,
+  dark: DarkTheme,
 }
 
 export default App;

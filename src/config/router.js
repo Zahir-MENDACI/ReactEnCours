@@ -6,18 +6,20 @@ import {
     Switch
 } from 'react-router-dom'
 import StudentsList from '../components/StudentsList';
-import Etudiant from '../pages/etudiant';
 import Home from '../pages/home';
-import Validation from '../pages/validation';
+import Login from '../pages/login';
+import Prof from '../pages/prof';
+import Signature from '../pages/signature';
+import PrivateRoute from './privateRoute';
 
 const Routes = () => {
     return (
         <Router>
             <Switch>
                 <Route exact path='/' component={Home}></Route>
-                <Route exact path='/list' component={StudentsList}></Route>
-                <Route exact path='/etudiant' component={Etudiant}></Route>
-                <Route exact path='/etudiant/:id' component={Validation}></Route>
+                <PrivateRoute exact path='/prof' component={Prof}></PrivateRoute>
+                <Route exact path='/login' component={Login}></Route>
+                <Route exact path='/signature' component={Signature}></Route>
             </Switch>
         </Router>
     );

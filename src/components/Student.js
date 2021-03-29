@@ -1,6 +1,7 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
+import styled from 'styled-components'
 
 const Student = ({data}) => {
     console.log(data)
@@ -21,11 +22,49 @@ const Student = ({data}) => {
     }
     
     return (
-        <div>
-            <p>{data.firstname}</p>
-            <button onClick={envoi}>envoyer</button>
-        </div>
+        <DivLigne>
+            <DivInfos>
+                <p>{data.firstname} {data.lastname} {data.email}</p>
+                <img src={data.signature} />
+            </DivInfos>
+            <DivButton>
+                <Button onClick={envoi}>envoyer</Button>
+                {(data.signe == 0) ? <p>Non signé</p> : <p>Signé</p>}
+            </DivButton>
+        </DivLigne>
     );
 };
+
+const DivLigne = styled.div`
+    height: 120px;
+    width: 100%;
+    padding: 10px 30px;
+    &:before
+    {
+        content: '';
+        position: absolute;
+        width: 50%;
+        margin-left: 5%;
+        height: 1px;
+        background-color: #000;
+    }
+    &:first-child:before
+    {
+        height: 0px;
+    }
+
+`
+
+const DivInfos = styled.div`
+    display: flex;
+`
+
+const DivButton = styled.div`
+    display: flex
+`
+
+const Button = styled.button`
+
+`
 
 export default Student;
