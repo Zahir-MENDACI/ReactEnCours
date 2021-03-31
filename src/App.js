@@ -12,6 +12,9 @@ import {useTranslation} from 'react-i18next'
 import { ThemeProvider } from "styled-components";
 import Splash from './components/Splash';
 
+import ThemeContextProvider from './config/Context/ThemeContext';
+import BtnToggle from './components/BtnToggle/BtnToggle';
+
 
 function App() {
   const {t, i18n} = useTranslation()
@@ -19,6 +22,8 @@ function App() {
   const [theme, setTheme] = useState("light")
   
   return (
+      <ThemeContextProvider>
+        <BtnToggle/>
         <Provider store={store}>
           <button onClick={() => i18n.changeLanguage('fr')}>Fr</button>
           <button onClick={() => i18n.changeLanguage('en')}>En</button>
@@ -26,6 +31,7 @@ function App() {
 
           </Routes>
         </Provider>
+      </ThemeContextProvider>
     );
     
 //   init("user_s8PpYDAqUM3HKVcCGPmLc");
