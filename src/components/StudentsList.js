@@ -40,7 +40,7 @@ const StudentsList = () => {
     }
 
     return (
-        <>
+        <div>
             <h1>{t('list')}</h1>
             {students[0] ? (
                 <DivList>
@@ -50,20 +50,26 @@ const StudentsList = () => {
                     )) }
                 </DivList> ) : (
                     <div>
-                        <h1>Pas de donnees disponibles</h1>
+                        <h1>{t('noData')}</h1>
                         <button> Actualiser </button>
                     </div>)}
 
-            <button onClick={reset}>reset</button>
-        </>
+            <Button onClick={reset}>reset</Button>
+        </div>
     );
 };
 
 const DivList = styled.div`
-    width: 60vw;
+    width: 100%;
     min-height: 200px;
     border: solid 1px #000;
     border-radius: 10px;
+
+    
+`
+
+const Button = styled.button`
+   
 `
 
 export default StudentsList;

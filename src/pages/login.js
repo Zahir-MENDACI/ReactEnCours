@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import LoginForm from '../components/LoginForm';
 import fire from '../firebase/firebase'
 import axios from 'axios'
 import './login.css'
 import Prof from './prof';
 import Signature from './signature';
+import { ThemeContext } from '../config/Context/ThemeContext';
+import './home.css'
 
 const Login = ({history}) => {
+
+    const {theme} = useContext(ThemeContext)
 
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
@@ -31,7 +35,7 @@ const Login = ({history}) => {
     {
         clearErrors()
 
-        if (email == "prof" && password == "prof")
+        if (email == "prof@test.fr" && password == "prof")
         {
             axios(
                 {
@@ -122,7 +126,7 @@ const Login = ({history}) => {
     }, [])
     
     return (
-        <div>
+        <div className={theme ? "contenu light" : "contenu dark"}>
             {user ? (
                 <Signature handleLogout={handleLogout}/>
                 ) : localStorage.getItem('token') ? (

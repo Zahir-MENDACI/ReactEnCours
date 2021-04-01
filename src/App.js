@@ -10,10 +10,12 @@ import Routes from './config/router'
 import './config/translations'
 import {useTranslation} from 'react-i18next'
 import { ThemeProvider } from "styled-components";
-import Splash from './components/Splash';
 
 import ThemeContextProvider from './config/Context/ThemeContext';
 import BtnToggle from './components/BtnToggle/BtnToggle';
+import Navbar from './components/Navbar';
+
+
 
 
 function App() {
@@ -23,10 +25,9 @@ function App() {
   
   return (
       <ThemeContextProvider>
-        <BtnToggle/>
         <Provider store={store}>
-          <button onClick={() => i18n.changeLanguage('fr')}>Fr</button>
-          <button onClick={() => i18n.changeLanguage('en')}>En</button>
+        <Navbar/>
+          
           <Routes>
 
           </Routes>

@@ -2,6 +2,12 @@
     "translation": 
     {
         "home": "Home",
-        "list": "Students list"
+        "list": "Students list",
+        "password": "Password",
+        "login": "Login",
+        "noData": "No data available",
+        "notsigned": "Not signed",
+        "signed": "Signed",
+        "send": "Send mail"
     }
 }

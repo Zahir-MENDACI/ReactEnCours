@@ -13,15 +13,30 @@ const Prof = () => {
     
     return (
         <Div className={theme ? "contenu light" : "contenu dark"}>
-            <Deconnexion/>
-            <StudentsList/>
+            <Divv><StudentsList/></Divv>
             <Code/>
+            <Deconnexion/>
         </Div>
     );
 };
 
 const Div = styled.div`
-    
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    column-gap: 30px;
+
+    @media (max-width: 700px) {
+    grid-template-columns: 1fr
+  }
 `
+
+const Divv = styled.div`
+    @media (max-width: 700px) {
+    grid-row: 2;
+  }
+`
+
+
 
 export default Prof;

@@ -2,12 +2,15 @@ import React from 'react';
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
 import styled from 'styled-components'
+import {useTranslation} from 'react-i18next'
 
 const Student = ({data}) => {
     console.log(data)
 
     init("user_s8PpYDAqUM3HKVcCGPmLc");
     
+    const {t, i18n} = useTranslation()
+
     const envoi = (e) =>
     {
         let nom = data.firstname
@@ -23,48 +26,54 @@ const Student = ({data}) => {
     
     return (
         <DivLigne>
-            <DivInfos>
-                <p>{data.firstname} {data.lastname} {data.email}</p>
-                <img src={data.signature} />
-            </DivInfos>
-            <DivButton>
-                <Button onClick={envoi}>envoyer</Button>
-                {(data.signe == 0) ? <p>Non signé</p> : <p>Signé</p>}
-            </DivButton>
+                <DivInfos>
+                    <p>{data.firstname} {data.lastname} {data.email}</p>
+                    <DivSign>
+                        <Button onClick={envoi}>{t('send')}</Button>
+                        {(data.signe == 0) ? <p>{t('notsigned')}</p> : <p>{t('signed')}</p>}
+                    </DivSign>
+                </DivInfos>
+                <DivImg>
+                    { data.signature ? <img src={data.signature}  style={{width: "120px", height: "120px"}}/> : ""}
+                </DivImg>
         </DivLigne>
     );
 };
 
 const DivLigne = styled.div`
     height: 120px;
-    width: 100%;
     padding: 10px 30px;
-    &:before
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border-bottom: solid 1px #000;
+    &:last-child
     {
-        content: '';
-        position: absolute;
-        width: 50%;
-        margin-left: 5%;
-        height: 1px;
-        background-color: #000;
+        border: none
     }
-    &:first-child:before
-    {
-        height: 0px;
+    @media (max-width: 700px) {
+    height: 150px
     }
 
 `
+
 
 const DivInfos = styled.div`
     display: flex;
+    flex-direction: column;
+`
+const DivSign = styled.div`
+    display: flex;
+    margin-top: 10px;
+    line-height: 0px
 `
 
-const DivButton = styled.div`
-    display: flex
+const DivImg = styled.div`
+    display: flex;
+    justify-content: right;
 `
 
 const Button = styled.button`
-
+    margin-right: 30px;
 `
 
 export default Student;

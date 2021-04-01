@@ -31,6 +31,8 @@ const Signature = ({handleLogout}) => {
                 }))
             });
 
+            alert('Signé')
+            
             fire.database().ref().child(`etudiants/${key}/signe`).set(
                 "1",
                 err => 
@@ -85,34 +87,41 @@ const Signature = ({handleLogout}) => {
     }, [])
     
     return (
-        <>
-            <button onClick={handleLogout}>Deconnecter</button>
+        <Content>
+            {/* <button onClick={handleLogout}>Deconnecter</button> */}
             {/* <div style={{border: "solid 3px #000", width: "800px"}}>
                 <Sign canvasProps={{width: 800, height: 600}} ref={canvasRef}/>        
             </div>
             <button>Valider</button> */}
 
             <div >
-                <div >
+                <Sign>
                     <SignaturePad
-                    ref={(ref) => { sigPad = ref }}  />
-                </div>
+                    ref={(ref) => { sigPad = ref }}  minWidth={2} minDistance={1} canvasProps={{style: {width: "300px", height: "300px"}}}/>
+                </Sign>
                 <div>
                     <button  onClick={clear}>
-                    Clear
+                    Effacer
                     </button>
                     <button  onClick={trim}>
-                    Trim
+                    Signer
                     </button>
                 </div>
-                {trimmedDataURL
-                    ? <img 
-                    src={trimmedDataURL} />
-                    : null}
             </div>
-        </>
+        </Content>
     );
 };
+
+const Content = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center
+`
+
+const Sign = styled.div`
+    border: solid 1px #000;
+    display: inline-block
+`
 
 export default Signature;
 

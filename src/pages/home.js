@@ -8,7 +8,7 @@ const Home = () => {
     console.log('--------')
     const {t, i18n} = useTranslation()
 
-    const {theme} = useContext(ThemeContext)
+    const {theme} = useContext(ThemeContext)    
     
     return (
         <div className={theme ? "contenu light" : "contenu dark"}>

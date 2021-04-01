@@ -2,6 +2,12 @@
     "translation": 
     {
         "home": "Accueil",
-        "list": "Liste etudiants"
+        "list": "Liste etudiants",
+        "password": "Mot de passe",
+        "login": "Se connecter",
+        "noData": "Pas de données disponible",
+        "notsigned": "Non signé",
+        "signed": "Signé",
+        "send": "Envoyer mail"
     }
 }
