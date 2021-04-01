@@ -7,8 +7,6 @@ import Prof from './prof';
 import Signature from './signature';
 import { ThemeContext } from '../config/Context/ThemeContext';
 import './home.css'
-import Code from '../components/Code';
-import CodeReader from '../components/CodeReader';
 
 const Login = ({history}) => {
 
@@ -130,7 +128,7 @@ const Login = ({history}) => {
     return (
         <div className={theme ? "contenu light" : "contenu dark"}>
             {user ? (
-                <CodeReader/>
+                <Signature handleLogout={handleLogout}/>
                 ) : localStorage.getItem('token') ? (
                     <Prof/>
                 ) : (

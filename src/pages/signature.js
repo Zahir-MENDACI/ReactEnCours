@@ -4,7 +4,7 @@ import SignaturePad from "react-signature-canvas"
 import styled from 'styled-components'
 import fire from '../firebase/firebase'
 
-const Signature = () => {
+const Signature = ({handleLogout}) => {
 
     const [user, setUser] = useState('')
     const history = useHistory()
@@ -93,7 +93,7 @@ const Signature = () => {
                 <Sign canvasProps={{width: 800, height: 600}} ref={canvasRef}/>        
             </div>
             <button>Valider</button> */}
-            {user ? (
+
             <div >
                 <Sign>
                     <SignaturePad
@@ -107,9 +107,7 @@ const Signature = () => {
                     Signer
                     </button>
                 </div>
-            </div>):(
-                history.push('/login')
-            )}
+            </div>
         </Content>
     );
 };
