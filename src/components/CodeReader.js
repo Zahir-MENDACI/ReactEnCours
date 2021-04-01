@@ -8,7 +8,7 @@ const CodeReader = (history) => {
   const handleScan = data => {
     if (data) {
         setResult(data)
-        history.push(data)
+        window.location.href = data
     }
   }
   const handleError = err => {
