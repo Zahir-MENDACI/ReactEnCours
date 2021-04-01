@@ -8,6 +8,8 @@
         "noData": "Pas de données disponible",
         "notsigned": "Non signé",
         "signed": "Signé",
-        "send": "Envoyer mail"
+        "send": "Envoyer mail",
+        "dark": "Sombre",
+        "light": "Clair"
     }
 }

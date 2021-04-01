@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next'
 const Student = ({data}) => {
     console.log(data)
 
-    init("user_s8PpYDAqUM3HKVcCGPmLc");
+    init("user_s8PpYDAqUM3HKVcCGPmLc")
     
     const {t, i18n} = useTranslation()
 
@@ -16,9 +16,11 @@ const Student = ({data}) => {
         let nom = data.firstname
         let email = data.email
         e.preventDefault();
+        console.log(email)
         emailjs.send('default_service', 'template_0q0rkov', {nom, email})
         .then((result) => {
             console.log(result.text);
+            alert('email envoyé')
         }, (error) => {
             console.log(error.text);
         });

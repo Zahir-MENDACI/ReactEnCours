@@ -11,6 +11,8 @@ import './config/translations'
 import {useTranslation} from 'react-i18next'
 import { ThemeProvider } from "styled-components";
 
+import fire from './firebase/firebase'
+
 import ThemeContextProvider from './config/Context/ThemeContext';
 import BtnToggle from './components/BtnToggle/BtnToggle';
 import Navbar from './components/Navbar';
@@ -22,13 +24,31 @@ function App() {
   const {t, i18n} = useTranslation()
 
   const [theme, setTheme] = useState("light")
+
+  const messaging = fire.messaging()
+  messaging.requestPermission().then(()=>
+  {
+    return messaging.getToken()
+  }).then(token =>
+    {
+      console.log('Token: ', token)
+    })
+    .catch(err =>
+      {
+        console.log(err)
+      })
+
+  messaging.onMessage((payload) =>
+  {
+    console.log(payload)
+  })
   
   return (
       <ThemeContextProvider>
         <Provider store={store}>
-        <Navbar/>
           
           <Routes>
+            {/* <Navbar/> */}
 
           </Routes>
         </Provider>
