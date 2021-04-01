@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader'
 
-const CodeReader = () => {
+const CodeReader = (history) => {
 
     const [result, setResult] = useState("")
      
   const handleScan = data => {
     if (data) {
         setResult(data)
+        history.push(data)
     }
   }
   const handleError = err => {
@@ -19,7 +20,7 @@ const CodeReader = () => {
             <QrReader
                 delay={300}
                 onError={handleError}
-                onScan={handleScan}
+                onScan={(handleScan)}
                 style={{ width: '500px' }}
             />
             <p>{result}</p>
