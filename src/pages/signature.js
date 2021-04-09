@@ -23,7 +23,7 @@ const Signature = ({handleLogout}) => {
         {
             setTrimmedDataURL(sigPad.getTrimmedCanvas().toDataURL('image'))
 
-            fire.database().ref().child('etudiants').orderByChild('email').equalTo('etudiant1@test.com').on("value", function(snapshot) 
+            fire.database().ref().child('etudiants').orderByChild('email').equalTo(user.email).on("value", function(snapshot) 
             {
                 snapshot.forEach((function(child) 
                 { 
@@ -88,12 +88,6 @@ const Signature = ({handleLogout}) => {
     
     return (
         <Content>
-            {/* <button onClick={handleLogout}>Deconnecter</button> */}
-            {/* <div style={{border: "solid 3px #000", width: "800px"}}>
-                <Sign canvasProps={{width: 800, height: 600}} ref={canvasRef}/>        
-            </div>
-            <button>Valider</button> */}
-
             <div >
                 <Sign>
                     <SignaturePad
@@ -124,5 +118,3 @@ const Sign = styled.div`
 `
 
 export default Signature;
-
-

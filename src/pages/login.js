@@ -1,23 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect} from 'react';
 import LoginForm from '../components/LoginForm';
 import fire from '../firebase/firebase'
 import axios from 'axios'
 import './login.css'
 import Prof from './prof';
 import Signature from './signature';
-import { ThemeContext } from '../config/Context/ThemeContext';
-import './home.css'
 
 const Login = ({history}) => {
-
-    const {theme} = useContext(ThemeContext)
 
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-    const [hasAccount, setHasAccount] = useState('')
 
     const clearInputs = () =>
     {
@@ -126,7 +121,7 @@ const Login = ({history}) => {
     }, [])
     
     return (
-        <div className={theme ? "contenu light" : "contenu dark"}>
+        <div>
             {user ? (
                 <Signature handleLogout={handleLogout}/>
                 ) : localStorage.getItem('token') ? (

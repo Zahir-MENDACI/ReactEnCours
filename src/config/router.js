@@ -6,17 +6,16 @@ import {
     Switch
 } from 'react-router-dom'
 import Navbar from '../components/Navbar';
-import StudentsList from '../components/StudentsList';
-import Home from '../pages/home';
 import Login from '../pages/login';
 import Prof from '../pages/prof';
 import Signature from '../pages/signature';
 import PrivateRoute from './privateRoute';
 
-const Routes = () => {
+const Routes = ({theme, toggleTheme}) => {
+    console.log(theme)
     return (
         <Router>
-            <Navbar/>
+            <Navbar  theme={theme} toggleTheme={toggleTheme}/>
             <Switch>
                 <Route exact path='/' component={Login}></Route>
                 <PrivateRoute exact path='/prof' component={Prof}></PrivateRoute>

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
-import BtnToggle from './BtnToggle/BtnToggle';
 import {useTranslation} from 'react-i18next'
-import fire from '../firebase/firebase'
 import Deconnexion from './Deconnexion';
+import Toggle from './Toggler';
 
-const Navbar = () => {
+const Navbar = ({theme, toggleTheme}) => {
 
     const {t, i18n} = useTranslation()
 
@@ -19,7 +18,7 @@ const Navbar = () => {
             </Divv>
             <Divv>
                 <Deconnexion/>
-                <BtnToggle/>
+                <Toggle theme={theme} toggleTheme={toggleTheme} />
             </Divv>
         </Div>
     );
